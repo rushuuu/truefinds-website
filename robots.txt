@@ -1,0 +1,56 @@
+# TrueFinds Website - Robots.txt
+# Configure search engine crawling behavior
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Disallow admin and private areas (if any)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Crawl-delay for specific bots (if needed)
+# User-agent: *
+# Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://truefinds.com/sitemap.xml
+
+# Disallow common development and temporary files
+Disallow: /*.tmp$
+Disallow: /*.bak$
+Disallow: /*.backup$
+Disallow: /*.log$
+
+# Allow important assets
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.svg$
+
+# Block common bot paths
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.env
+
+# Specific bot instructions
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Block unwanted bots (optional)
+# User-agent: AhrefsBot
+# Disallow: /
+
+# Social media crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: TwitterBot
+Allow: /

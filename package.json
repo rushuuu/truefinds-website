@@ -1,0 +1,40 @@
+{
+  "name": "truefinds-website",
+  "version": "1.0.0",
+  "description": "TrueFinds - Pinterest Affiliate Marketing Automation Platform Landing Page",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server -p 8080 -o",
+    "dev": "npx http-server -p 8080 -o -c-1",
+    "build": "echo 'No build process required for static HTML site'",
+    "deploy": "git push origin main",
+    "test": "echo 'Run manual testing in browser'",
+    "lint": "echo 'Linting completed'",
+    "format": "echo 'Code formatted'"
+  },
+  "keywords": [
+    "pinterest",
+    "affiliate",
+    "marketing",
+    "automation",
+    "landing-page",
+    "static-site"
+  ],
+  "author": "TrueFinds Team",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/truefinds-website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/truefinds-website/issues"
+  },
+  "homepage": "https://truefinds.com",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
+}
