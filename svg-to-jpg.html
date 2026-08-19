@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG to JPG Converter - TrueFinds</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .converter {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .logo-display {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-display svg {
+            max-width: 400px;
+            height: auto;
+        }
+
+        .controls {
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #6366f1, #ec4899);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .file-select {
+            margin: 20px 0;
+        }
+
+        select, input {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            margin: 5px;
+        }
+
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .download-area {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .download-area a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="converter">
+        <h1>🎨 SVG to JPG Converter</h1>
+
+        <div class="info">
+            <strong>Instructions:</strong>
+            <ol>
+                <li>Select a logo from the dropdown</li>
+                <li>Adjust quality if needed</li>
+                <li>Click "Convert to JPG" button</li>
+                <li>Download the converted JPG file</li>
+            </ol>
+        </div>
+
+        <div class="file-select">
+            <label for="logoSelect">Choose Logo:</label>
+            <select id="logoSelect">
+                <option value="logo-icon.svg">Main Logo (512x512)</option>
+                <option value="logo-square.svg">Square Logo (512x512)</option>
+                <option value="logo.svg">Standard Logo</option>
+                <option value="favicon.ico">Favicon (64x64)</option>
+            </select>
+        </div>
+
+        <div class="controls">
+            <label for="quality">Quality:</label>
+            <input type="range" id="quality" min="0.1" max="1.0" step="0.1" value="0.9">
+            <span id="qualityValue">90%</span>
+
+            <label for="size">Output Size:</label>
+            <select id="size">
+                <option value="512">512x512 (Standard)</option>
+                <option value="1024">1024x1024 (High Quality)</option>
+                <option value="256">256x256 (Small)</option>
+                <option value="128">128x128 (Thumbnail)</option>
+            </select>
+        </div>
+
+        <button onclick="convertSVGtoJPG()">🔄 Convert to JPG</button>
+
+        <div class="logo-display" id="logoDisplay">
+            <p>Select a logo to preview</p>
+        </div>
+
+        <div class="download-area" id="downloadArea">
+            <h3>✅ Conversion Complete!</h3>
+            <a id="downloadLink" download>📥 Download JPG</a>
+        </div>
+    </div>
+
+    <script>
+        const logoSelect = document.getElementById('logoSelect');
+        const qualitySlider = document.getElementById('quality');
+        const qualityValue = document.getElementById('qualityValue');
+        const sizeSelect = document.getElementById('size');
+        const logoDisplay = document.getElementById('logoDisplay');
+        const downloadArea = document.getElementById('downloadArea');
+        const downloadLink = document.getElementById('downloadLink');
+
+        // Update quality display
+        qualitySlider.addEventListener('input', function() {
+            qualityValue.textContent = Math.round(this.value * 100) + '%';
+        });
+
+        // Load and display selected SVG
+        logoSelect.addEventListener('change', function() {
+            const svgFile = this.value;
+            fetch(svgFile)
+                .then(response => response.text())
+                .then(svgContent => {
+                    logoDisplay.innerHTML = svgContent;
+                })
+                .catch(error => {
+                    logoDisplay.innerHTML = '<p style="color: red;">Error loading SVG</p>';
+                    console.error('Error:', error);
+                });
+        });
+
+        // Convert SVG to JPG
+        function convertSVGtoJPG() {
+            const svgFile = logoSelect.value;
+            const quality = parseFloat(qualitySlider.value);
+            const size = parseInt(sizeSelect.value);
+
+            // Fetch the SVG content
+            fetch(svgFile)
+                .then(response => response.text())
+                .then(svgContent => {
+                    // Create a canvas element
+                    const canvas = document.createElement('canvas');
+                    canvas.width = size;
+                    canvas.height = size;
+                    const ctx = canvas.getContext('2d');
+
+                    // Create an image from the SVG
+                    const img = new Image();
+                    const svgBlob = new Blob([svgContent], {type: 'image/svg+xml;charset=utf-8'});
+                    const url = URL.createObjectURL(svgBlob);
+
+                    img.onload = function() {
+                        // Draw white background
+                        ctx.fillStyle = 'white';
+                        ctx.fillRect(0, 0, size, size);
+
+                        // Draw the SVG image
+                        ctx.drawImage(img, 0, 0, size, size);
+
+                        // Convert canvas to JPG
+                        canvas.toBlob(function(blob) {
+                            // Create download link
+                            const jpgUrl = URL.createObjectURL(blob);
+                            downloadLink.href = jpgUrl;
+
+                            // Set filename
+                            const filename = svgFile.replace('.svg', '-' + size + 'x' + size + '.jpg');
+                            downloadLink.download = filename;
+
+                            // Show download area
+                            downloadArea.style.display = 'block';
+
+                            // Clean up
+                            URL.revokeObjectURL(url);
+                        }, 'image/jpeg', quality);
+                    };
+
+                    img.src = url;
+                })
+                .catch(error => {
+                    alert('Error converting SVG: ' + error.message);
+                    console.error('Error:', error);
+                });
+        }
+
+        // Load first logo on page load
+        window.onload = function() {
+            logoSelect.dispatchEvent(new Event('change'));
+        };
+    </script>
+</body>
+</html>

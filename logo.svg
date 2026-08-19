@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Main gradient for the logo -->
+    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Accent gradient -->
+    <linearGradient id="accentGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#14b8a6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Glow effect -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Shadow effect -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#6366f1" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background circle with gradient -->
+  <circle cx="256" cy="256" r="240" fill="url(#mainGradient)" opacity="0.1"/>
+
+  <!-- Main icon container -->
+  <g filter="url(#shadow)">
+    <!-- Stylized pin/magnifying glass hybrid shape -->
+    <circle cx="200" cy="200" r="120" fill="url(#mainGradient)" opacity="0.9"/>
+
+    <!-- Magnifying glass handle -->
+    <rect x="280" y="280" width="40" height="120" rx="20" fill="url(#accentGradient)"
+          transform="rotate(45, 280, 280)"/>
+
+    <!-- Pin head inside the magnifying glass -->
+    <circle cx="200" cy="200" r="90" fill="white" opacity="0.2"/>
+
+    <!-- Small pin symbol in center -->
+    <g transform="translate(200, 200)">
+      <!-- Pin body -->
+      <circle cx="0" cy="0" r="30" fill="white"/>
+      <!-- Pin head -->
+      <circle cx="0" cy="-15" r="15" fill="url(#mainGradient)"/>
+      <!-- Pin point -->
+      <path d="M0,15 L0,45" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    </g>
+
+    <!-- Shopping bag/affiliate link icon -->
+    <g transform="translate(320, 180)">
+      <!-- Small bag icon -->
+      <rect x="-20" y="-15" width="40" height="35" rx="5" fill="url(#accentGradient)" opacity="0.8"/>
+      <!-- Handle -->
+      <path d="M-15,-15 Q-15,-25 0,-25 Q15,-25 15,-15" stroke="white" stroke-width="3" fill="none"/>
+      <!-- Dollar sign/affiliate symbol -->
+      <text x="0" y="8" font-family="Arial, sans-serif" font-size="18" font-weight="bold"
+            fill="white" text-anchor="middle">$</text>
+    </g>
+  </g>
+
+  <!-- Floating particles for modern feel -->
+  <circle cx="380" cy="120" r="8" fill="url(#accentGradient)" opacity="0.6"/>
+  <circle cx="100" cy="350" r="6" fill="url(#mainGradient)" opacity="0.4"/>
+  <circle cx="420" cy="300" r="10" fill="url(#accentGradient)" opacity="0.5"/>
+  <circle cx="80" cy="180" r="5" fill="url(#mainGradient)" opacity="0.3"/>
+
+  <!-- Text placeholder (optional) -->
+  <text x="256" y="460" font-family="Arial, sans-serif" font-size="32" font-weight="bold"
+        fill="url(#mainGradient)" text-anchor="middle">TrueFinds</text>
+</svg>

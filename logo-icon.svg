@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="appGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="tealGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#14b8a6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+    </linearGradient>
+
+    <filter id="appGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="appShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#6366f1" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="url(#appGradient)" opacity="0.05" rx="200"/>
+
+  <!-- Main logo group -->
+  <g transform="translate(512, 512)" filter="url(#appShadow)">
+    <!-- Large magnifying glass circle -->
+    <circle cx="-80" cy="-80" r="280" fill="url(#appGradient)" opacity="0.95"/>
+
+    <!-- Magnifying glass handle -->
+    <rect x="200" y="200" width="80" height="240" rx="40" fill="url(#tealGradient)"
+          transform="rotate(45, 200, 200)"/>
+
+    <!-- Inner highlight circle -->
+    <circle cx="-80" cy="-80" r="200" fill="white" opacity="0.15"/>
+
+    <!-- Pin symbol inside -->
+    <g transform="translate(-80, -80)">
+      <!-- Pin body -->
+      <circle cx="0" cy="0" r="80" fill="white"/>
+      <!-- Pin head -->
+      <circle cx="0" cy="-40" r="40" fill="url(#appGradient)"/>
+      <!-- Pin point -->
+      <path d="M0,40 L0,120" stroke="white" stroke-width="8" stroke-linecap="round"/>
+      <!-- Shine effect -->
+      <circle cx="20" cy="-60" r="8" fill="white" opacity="0.8"/>
+    </g>
+
+    <!-- Shopping/affiliate icon -->
+    <g transform="translate(180, -100)">
+      <!-- Shopping bag -->
+      <rect x="-60" y="-40" width="120" height="100" rx="15" fill="url(#tealGradient)" opacity="0.9"/>
+      <!-- Handle -->
+      <path d="M-45,-40 Q-45,-70 0,-70 Q45,-70 45,-40" stroke="white" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <!-- Affiliate symbol -->
+      <text x="0" y="15" font-family="Arial, sans-serif" font-size="48" font-weight="bold"
+            fill="white" text-anchor="middle">$</text>
+      <!-- Small shine -->
+      <circle cx="30" cy="-25" r="6" fill="white" opacity="0.7"/>
+    </g>
+  </g>
+
+  <!-- Decorative elements -->
+  <circle cx="850" cy="200" r="25" fill="url(#tealGradient)" opacity="0.6"/>
+  <circle cx="150" cy="800" r="20" fill="url(#appGradient)" opacity="0.4"/>
+  <circle cx="900" cy="700" r="30" fill="url(#tealGradient)" opacity="0.5"/>
+  <circle cx="100" cy="300" r="18" fill="url(#appGradient)" opacity="0.3"/>
+
+  <!-- Modern geometric accents -->
+  <rect x="50" y="150" width="60" height="60" rx="10" fill="url(#appGradient)" opacity="0.2" transform="rotate(15, 80, 180)"/>
+  <rect x="850" y="750" width="50" height="50" rx="8" fill="url(#tealGradient)" opacity="0.3" transform="rotate(-20, 875, 775)"/>
+</svg>
