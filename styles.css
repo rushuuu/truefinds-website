@@ -1,0 +1,50 @@
+/* Basic placeholder styles for TrueFinds website */
+/* This file will be populated by the design agents */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* These are placeholder styles to prevent the site from breaking */
+/* The actual styling will be implemented by the design agents */
+
+.navbar {
+    background: #fff;
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.hero {
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.features {
+    padding: 4rem 0;
+}
+
+.contact {
+    padding: 4rem 0;
+}
+
+.footer {
+    background: #333;
+    color: #fff;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+/* Responsive basic styles */
+@media (max-width: 768px) {
+    .hero, .features, .contact {
+        padding: 2rem 0;
+    }
+}
